@@ -59,7 +59,7 @@ export default function Footer() {
 
         <div className="bh-footer-bottom">
           <p>&copy; {year} {BRAND.name}. All rights reserved.</p>
-          <p>Prices in PHP, per person, subject to availability.</p>
+          <p>Prices in PHP, per person, subject to availability. <span className="bh-photo-credit">Photos: <a href="https://unsplash.com" target="_blank" rel="noopener noreferrer">Unsplash</a></span></p>
         </div>
       </div>
     </footer>

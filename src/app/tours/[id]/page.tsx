@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { BRAND, ROUTES } from '@/lib/constants';
-import { Tour } from '@/lib/types';
+import { SAMPLE_TOURS } from '@/lib/tours-data';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -13,133 +13,8 @@ export const metadata: Metadata = {
   },
 };
 
-// Sample tours data - same as in tours/page.tsx (will be replaced with API call)
-const SAMPLE_TOURS: Tour[] = [
-  {
-    id: '1',
-    title: '4D3N Zhangjiajie + Huanglong Cave',
-    destination: 'China',
-    slug: 'zhangjiajie-huanglong-cave',
-    description: 'Experience the breathtaking Avatar world of Zhangjiajie National Forest Park and explore the stunning Huanglong Cave with a cruise experience.',
-    price: 20834,
-    dates_from: '2026-11-11',
-    dates_to: '2026-11-14',
-    duration_days: 4,
-    hotel_name: 'Mehood Lestie Hotel',
-    airline: 'Qingdao Airlines',
-    airline_logo_url: '/images/airlines/qingdao.png',
-    inclusions: [
-      'Roundtrip airfare via Qingdao Airlines',
-      '5kg hand-carry + 23kg check-in baggage',
-      '3 Nights Hotel Accommodation',
-      'Daily hotel breakfast',
-      'Private English-speaking tour guide and bus',
-      'Meals as listed: 3 breakfasts, 4 lunches, 2 dinners',
-      'One bottle of water per day',
-      'Complimentary group aerial photography'
-    ],
-    exclusions: [
-      'China Group Visa: ₱3,250 per pax',
-      'Tips for driver and tour guide: ₱2,600 per pax',
-      'Fuel surcharge (subject to change)',
-      'Compulsory shopping stops',
-      'Personal expenses and optional activities'
-    ],
-    itinerary: [
-      {
-        day: 1,
-        title: 'Arrival in Changsha',
-        location: 'Changsha',
-        meals: 'Lunch',
-        highlights: ['Zhangjiajie Grand Canyon & Glass Bridge', '72 Wonder Tower photo stop'],
-        description: 'Meet and greet at the airport, transfer to Zhangjiajie. Visit the stunning Grand Canyon and Glass Bridge. Transfer to hotel for check-in.'
-      },
-      {
-        day: 2,
-        title: 'Avatar Exploration',
-        location: 'Zhangjiajie',
-        meals: 'Breakfast, Lunch, Dinner',
-        highlights: ['Latex Museum', 'Tujia Folk Custom Park', 'Optional Tianmen Mountain Scenic Area'],
-        description: 'Hotel breakfast. Visit Latex Museum and Tujia Folk Custom Park. Optional tour to Tianmen Mountain Scenic Area available.'
-      },
-      {
-        day: 3,
-        title: 'Avatar Hallelujah Mountain',
-        location: 'Zhangjiajie National Forest Park',
-        meals: 'Breakfast, Lunch, Dinner',
-        highlights: ['Chinese Medicine Museum', 'Zhangjiajie National Forest Park', 'Bailong Elevator', 'Avatar Hallelujah Mountain'],
-        description: 'Hotel breakfast. Visit Chinese Medicine Museum. Explore Zhangjiajie National Forest Park with Bailong Elevator. See the famous Avatar Hallelujah Mountain.'
-      },
-      {
-        day: 4,
-        title: 'Departure',
-        location: 'Changsha - Manila',
-        meals: 'Breakfast, Lunch',
-        highlights: ['Jewelry store', 'Optional Huanglong Cave + Cruise'],
-        description: 'Hotel breakfast and check-out. Jewelry store visit. Optional tour to Huanglong Cave with cruise experience. Transfer to airport for departure.'
-      }
-    ],
-    hero_image_url: '/images/tours/china.jpg',
-    created_at: '2026-10-30T00:00:00Z',
-    updated_at: '2026-10-30T00:00:00Z',
-  },
-  {
-    id: '2',
-    title: '4D3N Bangkok Free & Easy',
-    destination: 'Thailand',
-    slug: 'bangkok-free-easy',
-    description: 'Discover the vibrant culture and cuisine of Bangkok with flexible itineraries and optional city tours.',
-    price: 25499,
-    dates_from: '2026-12-11',
-    dates_to: '2026-12-14',
-    duration_days: 4,
-    hotel_name: 'Ten-Star Inn or MY Hotel',
-    airline: 'Cebu Pacific',
-    airline_logo_url: '/images/airlines/cebu-pacific.png',
-    inclusions: ['Roundtrip airfare', '3 Nights Hotel', 'Breakfast daily', 'English Speaking Guide', 'Airport Transfers'],
-    exclusions: ['Travel tax', 'Extra baggage', 'Meals not listed', 'Personal expenses'],
-    itinerary: [
-      { day: 1, title: 'Arrival', location: 'Bangkok', meals: 'Lunch', highlights: ['Airport transfer', 'Hotel check-in'], description: 'Arrive in Bangkok, transfer to hotel' },
-      { day: 2, title: 'City Tour', location: 'Bangkok', meals: 'Breakfast', highlights: ['Temples', 'Markets'], description: 'Explore Bangkok temples and markets' },
-      { day: 3, title: 'Free Time', location: 'Bangkok', meals: 'Breakfast', highlights: ['Shopping', 'Dining'], description: 'Explore on your own or join optional tours' },
-      { day: 4, title: 'Departure', location: 'Bangkok', meals: 'Breakfast', highlights: ['Airport transfer'], description: 'Transfer to airport' }
-    ],
-    hero_image_url: '/images/tours/thailand.jpg',
-    created_at: '2026-10-30T00:00:00Z',
-    updated_at: '2026-10-30T00:00:00Z',
-  },
-  {
-    id: '3',
-    title: '5D4N Tokyo Adventure',
-    destination: 'Japan',
-    slug: 'tokyo-adventure',
-    description: 'Experience the perfect blend of traditional and modern Tokyo with guided tours and free time exploration.',
-    price: 32999,
-    dates_from: '2027-01-08',
-    dates_to: '2027-01-12',
-    duration_days: 5,
-    hotel_name: 'Hotel Tokyo',
-    airline: 'Philippine Airlines',
-    airline_logo_url: '/images/airlines/philippine-airlines.png',
-    inclusions: ['Roundtrip airfare', '4 Nights Hotel', 'Breakfast daily', 'English Speaking Guide', 'Airport Transfers', 'Travel Insurance'],
-    exclusions: ['Japan Visa', 'Extra meals', 'Personal expenses', 'Shopping'],
-    itinerary: [
-      { day: 1, title: 'Arrival', location: 'Tokyo', meals: 'Dinner', highlights: ['Airport transfer'], description: 'Arrive and settle in' },
-      { day: 2, title: 'Traditional Tokyo', location: 'Tokyo', meals: 'Breakfast, Lunch', highlights: ['Temples', 'Shrines'], description: 'Visit traditional sites' },
-      { day: 3, title: 'Modern Tokyo', location: 'Tokyo', meals: 'Breakfast', highlights: ['Shibuya', 'Shinjuku'], description: 'Explore modern districts' },
-      { day: 4, title: 'Mt. Fuji Day Trip', location: 'Mt. Fuji', meals: 'Breakfast, Lunch', highlights: ['Mt. Fuji views'], description: 'Optional Mt. Fuji trip' },
-      { day: 5, title: 'Departure', location: 'Tokyo', meals: 'Breakfast', highlights: ['Airport transfer'], description: 'Transfer to airport' }
-    ],
-    hero_image_url: '/images/tours/japan.jpg',
-    created_at: '2026-10-30T00:00:00Z',
-    updated_at: '2026-10-30T00:00:00Z',
-  },
-];
-
 interface TourDetailPageProps {
-  params: {
-    id: string;
-  };
+  params: Promise<{ id: string }>;
 }
 
 export async function generateStaticParams() {
@@ -148,8 +23,9 @@ export async function generateStaticParams() {
   }));
 }
 
-export default function TourDetailPage({ params }: TourDetailPageProps) {
-  const tour = SAMPLE_TOURS.find(t => t.slug === params.id);
+export default async function TourDetailPage({ params }: TourDetailPageProps) {
+  const { id } = await params;
+  const tour = SAMPLE_TOURS.find(t => t.slug === id);
 
   if (!tour) {
     return (
@@ -257,9 +133,9 @@ export default function TourDetailPage({ params }: TourDetailPageProps) {
       />
 
       {/* Hero Section with Image */}
-      <section className="relative h-96 bg-gradient-to-br from-biahes-bright-blue to-biahes-royal-blue flex items-center justify-center text-white text-7xl overflow-hidden">
-        <div className="absolute inset-0 bg-black/10" />
-        🌍
+      <section className="relative h-96 overflow-hidden" style={{ position: 'relative', height: 'clamp(260px, 45vw, 440px)', background: '#0B1F3A' }}>
+        <Image src={tour.hero_image_url} alt={`${tour.title}, ${tour.destination}`} fill priority sizes="100vw" style={{ objectFit: 'cover' }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(11,31,58,0) 40%, rgba(11,31,58,.75) 100%)' }} />
       </section>
 
       {/* Main Content */}

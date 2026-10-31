@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { BRAND, CONTACT, ROUTES } from '@/lib/constants';
-import { BLOG_POSTS, DESTINATIONS, FEATURED_TOURS, TESTIMONIALS, WHY_CHOOSE, peso } from '@/lib/home-data';
+import { BLOG_POSTS, DESTINATIONS, PHOTOS, TESTIMONIALS, WHY_CHOOSE, peso } from '@/lib/home-data';
+import { SAMPLE_TOURS } from '@/lib/tours-data';
 import TravelSearch from '@/components/home/TravelSearch';
 import ContactForm from '@/components/home/ContactForm';
 
@@ -13,6 +14,14 @@ const ICONS: Record<string, React.ReactNode> = {
   passport: <path d="M6 3h11a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H6zm6 5a3 3 0 1 0 0 6 3 3 0 0 0 0-6zM9 17h6" />,
   heart: <path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z" />,
 };
+
+const fmtDate = (iso: string, withYear = false) =>
+  new Date(`${iso}T00:00:00+08:00`).toLocaleDateString('en-PH', {
+    month: 'short',
+    day: 'numeric',
+    ...(withYear ? { year: 'numeric' } : {}),
+    timeZone: 'Asia/Manila',
+  });
 
 function SectionHead({ eyebrow, title, text, id }: { eyebrow: string; title: string; text?: string; id?: string }) {
   return (
@@ -49,14 +58,14 @@ export default function Home() {
 
           <div className="bh-hero-art" aria-hidden="true">
             <div className="bh-hero-card bh-hero-card-main">
-              <Image src="/images/destinations/boracay.svg" alt="" fill unoptimized priority sizes="(max-width: 900px) 90vw, 520px" />
+              <Image src={PHOTOS.boracay.src} alt="" fill priority sizes="(max-width: 960px) 90vw, 520px" />
               <span className="bh-hero-label">White Beach, Boracay</span>
             </div>
             <div className="bh-hero-card bh-hero-card-a">
-              <Image src="/images/destinations/palawan.svg" alt="" fill unoptimized sizes="220px" />
+              <Image src={PHOTOS.palawan.src} alt="" fill sizes="240px" />
             </div>
             <div className="bh-hero-card bh-hero-card-b">
-              <Image src="/images/destinations/siargao.svg" alt="" fill unoptimized sizes="220px" />
+              <Image src={PHOTOS.bohol.src} alt="" fill sizes="240px" />
             </div>
           </div>
         </div>
@@ -75,7 +84,7 @@ export default function Home() {
             {DESTINATIONS.map((d) => (
               <article key={d.name} className="bh-dest">
                 <div className="bh-dest-media">
-                  <Image src={d.image} alt={`Illustration of ${d.name}`} fill unoptimized sizes="(max-width: 640px) 100vw, 300px" />
+                  <Image src={d.image.src} alt={d.image.alt} fill sizes="(max-width: 640px) 100vw, 300px" />
                   <span className="bh-price-tag">From {peso(d.fromPrice)}</span>
                 </div>
                 <div className="bh-dest-body">
@@ -99,37 +108,52 @@ export default function Home() {
             <SectionHead
               id="tours-title"
               eyebrow="Featured tours"
-              title="Ready-made trips, local guides included"
-              text="Each package covers transfers, stays and the tours that make the trip. Pick a date and we handle the rest."
+              title="Upcoming tour packages"
+              text="Group departures with airfare, hotel and guided tours included. Reserve early to secure your seat."
             />
             <Link href={ROUTES.tours} className="bh-btn bh-btn-outline">See all packages</Link>
           </div>
           <div className="bh-tour-grid">
-            {FEATURED_TOURS.map((t) => (
-              <article key={t.title} className="bh-tour">
-                <div className="bh-tour-media">
-                  <Image src={t.image} alt={`Illustration for ${t.title}`} fill unoptimized sizes="(max-width: 640px) 100vw, 400px" />
+            {SAMPLE_TOURS.map((t) => (
+              <article key={t.id} className="bh-tour">
+                <Link href={`${ROUTES.tours}/${t.slug}`} className="bh-tour-media" aria-label={`View ${t.title}`}>
+                  <Image src={t.hero_image_url} alt={`${t.title}, ${t.destination}`} fill sizes="(max-width: 640px) 100vw, 400px" />
                   <div className="bh-tour-badges">
-                    <span className="bh-badge bh-badge-gold">{t.category}</span>
-                    <span className="bh-badge">{t.duration}</span>
+                    <span className="bh-badge bh-badge-gold">{t.destination}</span>
+                    <span className="bh-badge">{t.duration_days}D{t.duration_days - 1}N</span>
                   </div>
-                </div>
+                </Link>
                 <div className="bh-tour-body">
-                  <h3 className="bh-h3">{t.title}</h3>
-                  <p className="bh-tour-loc">
-                    <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z" /></svg>
-                    {t.location}
-                  </p>
+                  <h3 className="bh-h3">
+                    <Link href={`${ROUTES.tours}/${t.slug}`} className="bh-tour-title">{t.title}</Link>
+                  </h3>
+                  <dl className="bh-tour-facts">
+                    <div>
+                      <dt>Travel dates</dt>
+                      <dd>{fmtDate(t.dates_from)} – {fmtDate(t.dates_to, true)}</dd>
+                    </div>
+                    <div>
+                      <dt>Airline</dt>
+                      <dd>{t.airline}</dd>
+                    </div>
+                    <div>
+                      <dt>Hotel</dt>
+                      <dd>{t.hotel_name}</dd>
+                    </div>
+                  </dl>
                   <ul className="bh-checks">
-                    {t.highlights.map((h) => <li key={h}>{h}</li>)}
+                    {t.inclusions.slice(0, 4).map((h) => <li key={h}>{h}</li>)}
                   </ul>
+                  <Link href={`${ROUTES.tours}/${t.slug}`} className="bh-link">
+                    Full itinerary and inclusions <span aria-hidden="true">→</span>
+                  </Link>
                   <div className="bh-tour-foot">
                     <div>
                       <span className="bh-from">From</span>
                       <span className="bh-price">{peso(t.price)}</span>
-                      <span className="bh-from">{t.priceNote}</span>
+                      <span className="bh-from">/ person</span>
                     </div>
-                    <Link href={ROUTES.booking} className="bh-btn bh-btn-gold bh-btn-sm">Book Now</Link>
+                    <Link href={`${ROUTES.booking}?tour_id=${t.id}`} className="bh-btn bh-btn-gold bh-btn-sm">Book Now</Link>
                   </div>
                 </div>
               </article>
@@ -164,7 +188,7 @@ export default function Home() {
       <section className="bh-section bh-section-alt" id="about" aria-labelledby="about-title">
         <div className="bh-container bh-about-grid">
           <div className="bh-about-art">
-            <Image src="/images/destinations/banaue.svg" alt="Illustration of the Banaue Rice Terraces" fill unoptimized sizes="(max-width: 900px) 100vw, 480px" />
+            <Image src={PHOTOS.boracayShore.src} alt={PHOTOS.boracayShore.alt} fill sizes="(max-width: 960px) 100vw, 520px" />
             <span className="bh-about-sticker">Byaheng masaya!</span>
           </div>
           <div>
@@ -224,7 +248,7 @@ export default function Home() {
             {BLOG_POSTS.map((p) => (
               <article key={p.title} className="bh-post">
                 <div className="bh-post-media">
-                  <Image src={p.image} alt="" fill unoptimized sizes="(max-width: 640px) 100vw, 400px" />
+                  <Image src={p.image.src} alt={p.image.alt} fill sizes="(max-width: 640px) 100vw, 400px" />
                 </div>
                 <div className="bh-post-meta">
                   <span className="bh-chip">{p.tag}</span>

@@ -4,20 +4,9 @@
 export type Destination = {
   name: string;
   region: string;
-  image: string;
+  image: { src: string; alt: string };
   fromPrice: number;
   blurb: string;
-};
-
-export type FeaturedTour = {
-  title: string;
-  location: string;
-  image: string;
-  category: string;
-  duration: string;
-  price: number;
-  priceNote: string;
-  highlights: string[];
 };
 
 export type Testimonial = {
@@ -27,6 +16,23 @@ export type Testimonial = {
   /** Sample entries show a "Sample review" label. Replace with real customer reviews, then remove this flag. */
   sample?: boolean;
 };
+
+// Real photos from Unsplash (free for commercial use under the Unsplash License, no attribution required).
+// Swap any of these for your own trip photos by pointing `src` to a file in /public/images.
+export const PHOTOS = {
+  boracay: { src: 'https://images.unsplash.com/photo-1675759801135-cc2bba0a677b?auto=format&fit=crop&w=1400&q=75', alt: 'Paraw sailboats off White Beach, Boracay', credit: 'Edward Ang' },
+  palawan: { src: 'https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&w=1400&q=75', alt: 'Lagoon between limestone cliffs, El Nido, Palawan', credit: 'Cris Tagupa' },
+  cebu: { src: 'https://images.unsplash.com/photo-1586263426392-3b3e0748f618?auto=format&fit=crop&w=1400&q=75', alt: 'Kawasan Falls, Badian, Cebu', credit: 'MJ Tangonan' },
+  bohol: { src: 'https://images.unsplash.com/photo-1667823506151-836beb11723d?auto=format&fit=crop&w=1400&q=75', alt: 'The Chocolate Hills, Bohol', credit: 'Roland Hechanova' },
+  siargao: { src: 'https://images.unsplash.com/photo-1565565978731-f9e8cd35a317?auto=format&fit=crop&w=1400&q=75', alt: 'Coconut palms in Siargao', credit: 'Alejandro Luengo' },
+  baguio: { src: 'https://images.unsplash.com/photo-1666029584705-6c1d16984c22?auto=format&fit=crop&w=1400&q=75', alt: 'Baguio, a city in the mountains', credit: 'Ivan Arcilla' },
+  vigan: { src: 'https://images.unsplash.com/photo-1656341158450-84fbc3659bab?auto=format&fit=crop&w=1400&q=75', alt: 'A kalesa on a Vigan street', credit: 'Carlos Ramirez' },
+  davao: { src: 'https://images.unsplash.com/photo-1624685863152-4fa71a70d0c1?auto=format&fit=crop&w=1400&q=75', alt: 'Philippine Eagle, Davao', credit: 'Jomark Francis Velasco' },
+  boracayShore: { src: 'https://images.unsplash.com/photo-1530968033775-2c92736b131e?auto=format&fit=crop&w=1400&q=75', alt: 'Bangka boat on a Boracay shore', credit: 'Hector John Periquin' },
+  elNidoBoats: { src: 'https://images.unsplash.com/photo-1583685133115-90748ccbe274?auto=format&fit=crop&w=1400&q=75', alt: 'Island-hopping boat in El Nido', credit: 'Jules Bassoleil' },
+  cebuFalls: { src: 'https://images.unsplash.com/photo-1609930420316-72622d2db23d?auto=format&fit=crop&w=1400&q=75', alt: 'Waterfall in Cebu', credit: 'Dennis Du' },
+  baguioHills: { src: 'https://images.unsplash.com/photo-1580127252363-1d29a1ff0603?auto=format&fit=crop&w=1400&q=75', alt: 'Mountains around Baguio', credit: 'Gian Paul Guinto' },
+} as const;
 
 export const NAV_LINKS = [
   { label: 'Home', href: '/' },
@@ -43,121 +49,58 @@ export const DESTINATIONS: Destination[] = [
   {
     name: 'Boracay',
     region: 'Aklan, Western Visayas',
-    image: '/images/destinations/boracay.svg',
+    image: PHOTOS.boracay,
     fromPrice: 4999,
     blurb: 'Powder-white sand on White Beach, paraw sailing at sunset and lively Station 2 nights.',
   },
   {
     name: 'Palawan',
     region: 'El Nido and Coron, MIMAROPA',
-    image: '/images/destinations/palawan.svg',
+    image: PHOTOS.palawan,
     fromPrice: 6499,
     blurb: 'Limestone cliffs over clear lagoons. Hop between hidden beaches and kayak the Big Lagoon.',
   },
   {
     name: 'Cebu',
     region: 'Central Visayas',
-    image: '/images/destinations/cebu.svg',
+    image: PHOTOS.cebu,
     fromPrice: 3999,
     blurb: 'Canyoneer down to Kawasan Falls, snorkel the Moalboal sardine run and eat your way through lechon.',
   },
   {
     name: 'Bohol',
     region: 'Central Visayas',
-    image: '/images/destinations/bohol.svg',
+    image: PHOTOS.bohol,
     fromPrice: 3499,
     blurb: 'The Chocolate Hills, tiny tarsiers, a Loboc River lunch cruise and quiet Panglao beaches.',
   },
   {
     name: 'Siargao',
     region: 'Surigao del Norte, Mindanao',
-    image: '/images/destinations/siargao.svg',
+    image: PHOTOS.siargao,
     fromPrice: 5299,
     blurb: 'Surf the Cloud 9 reef break, then island-hop to Naked, Daku and Guyam islands.',
   },
   {
     name: 'Baguio',
     region: 'Benguet, Cordillera',
-    image: '/images/destinations/baguio.svg',
+    image: PHOTOS.baguio,
     fromPrice: 2499,
     blurb: 'The Summer Capital: cool pine air, La Trinidad strawberry farms and Session Road cafés.',
   },
   {
     name: 'Vigan',
     region: 'Ilocos Sur',
-    image: '/images/destinations/vigan.svg',
+    image: PHOTOS.vigan,
     fromPrice: 2899,
     blurb: 'Cobblestone Calle Crisologo, Spanish-era houses, kalesa rides and Vigan empanada.',
   },
   {
     name: 'Davao',
     region: 'Davao Region, Mindanao',
-    image: '/images/destinations/davao.svg',
+    image: PHOTOS.davao,
     fromPrice: 3799,
     blurb: 'Home of Mt. Apo and the Philippine Eagle. Durian, pomelo and quick boat rides to Samal.',
-  },
-];
-
-export const FEATURED_TOURS: FeaturedTour[] = [
-  {
-    title: 'Boracay Escape 3D2N',
-    location: 'Boracay, Aklan',
-    image: '/images/destinations/boracay.svg',
-    category: 'Beach',
-    duration: '3 days, 2 nights',
-    price: 8990,
-    priceNote: '/ person',
-    highlights: ['Caticlan airport and jetty transfers', '2 nights beachfront at Station 2', 'Island hopping with seafood lunch'],
-  },
-  {
-    title: 'Palawan Island Hopping',
-    location: 'El Nido, Palawan',
-    image: '/images/destinations/palawan.svg',
-    category: 'Island hopping',
-    duration: '4 days, 3 nights',
-    price: 12500,
-    priceNote: '/ person',
-    highlights: ['Puerto Princesa to El Nido van transfers', 'El Nido Tours A and C with lunch', 'Big and Small Lagoon kayaking'],
-  },
-  {
-    title: 'Cebu Adventure Package',
-    location: 'Moalboal and Cebu City',
-    image: '/images/destinations/cebu.svg',
-    category: 'Adventure',
-    duration: '4 days, 3 nights',
-    price: 10750,
-    priceNote: '/ person',
-    highlights: ['Kawasan Falls canyoneering with guide', 'Moalboal sardine run snorkeling', 'Oslob whale shark watching'],
-  },
-  {
-    title: 'Bohol Countryside Tour',
-    location: 'Carmen, Loboc and Panglao',
-    image: '/images/destinations/bohol.svg',
-    category: 'Nature',
-    duration: '3 days, 2 nights',
-    price: 7450,
-    priceNote: '/ person',
-    highlights: ['Chocolate Hills Complex viewing deck', 'Philippine Tarsier Sanctuary', 'Loboc River cruise with buffet lunch'],
-  },
-  {
-    title: 'Tokyo, Fuji and Osaka 6D5N',
-    location: 'Tokyo, Mt. Fuji and Osaka, Japan',
-    image: '/images/destinations/japan.svg',
-    category: 'Japan',
-    duration: '6 days, 5 nights',
-    price: 58900,
-    priceNote: '/ person, with airfare',
-    highlights: ['Roundtrip airfare from Manila', 'Mt. Fuji 5th Station and Lake Kawaguchi', 'Japan visa application assistance'],
-  },
-  {
-    title: 'Seoul and Nami Island 5D4N',
-    location: 'Seoul and Gapyeong, South Korea',
-    image: '/images/destinations/korea.svg',
-    category: 'South Korea',
-    duration: '5 days, 4 nights',
-    price: 39900,
-    priceNote: '/ person, with airfare',
-    highlights: ['Roundtrip airfare from Manila', 'Gyeongbokgung Palace with hanbok rental', 'Korea visa application assistance'],
   },
 ];
 
@@ -198,19 +141,19 @@ export const BLOG_POSTS = [
     tag: 'Island hopping',
     title: 'El Nido Tours A, B, C or D: which one to book first',
     excerpt: 'What each tour covers, which lagoons need a kayak, and how to pick if you only have one day.',
-    image: '/images/destinations/palawan.svg',
+    image: PHOTOS.elNidoBoats,
   },
   {
     tag: 'Food',
     title: 'Lechon, sutukil and puso: a first-timer’s Cebu food trail',
     excerpt: 'Where to start, how to order sutukil at a seafood market, and why you eat puso with your hands.',
-    image: '/images/destinations/cebu.svg',
+    image: PHOTOS.cebuFalls,
   },
   {
     tag: 'Festivals',
     title: 'Panagbenga in Baguio: planning around the flower festival',
     excerpt: 'Parade dates, where to stand on Session Road, and how early to book rooms for February.',
-    image: '/images/destinations/baguio.svg',
+    image: PHOTOS.baguioHills,
   },
 ];
 

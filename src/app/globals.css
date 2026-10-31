@@ -510,3 +510,17 @@ html { scroll-padding-top: calc(var(--bh-header-h) + 12px); }
   .bh-btn:hover, .bh-dest:hover, .bh-tour:hover { transform: none; }
 }
 .bh-contact-list a { text-decoration: none; }
+
+/* Real tour cards */
+.bh-tour-media { display: block; overflow: hidden; }
+.bh-tour-media img, .bh-dest-media img { transition: transform .5s ease; }
+.bh-tour:hover .bh-tour-media img, .bh-dest:hover .bh-dest-media img { transform: scale(1.05); }
+.bh-dest-media, .bh-hero-card, .bh-post-media, .bh-about-art { background: var(--bh-navy-3); }
+.bh-home a.bh-tour-title { color: #fff; text-decoration: none; }
+.bh-home a.bh-tour-title:hover { color: var(--bh-gold); }
+.bh-tour-facts { display: grid; gap: 8px; margin: 0; padding: 12px 14px; border-radius: 14px; background: rgba(255,255,255,.04); border: 1px solid var(--bh-line); }
+.bh-tour-facts > div { display: flex; justify-content: space-between; gap: 12px; font-size: .88rem; }
+.bh-tour-facts dt { color: var(--bh-muted); }
+.bh-tour-facts dd { margin: 0; color: #fff; font-weight: 600; text-align: right; }
+.bh-photo-credit { font-size: .78rem; }
+@media (prefers-reduced-motion: reduce) { .bh-tour-media img, .bh-dest-media img { transition: none; } }

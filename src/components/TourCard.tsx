@@ -15,10 +15,16 @@ export default function TourCard({ tour }: TourCardProps) {
   return (
     <Link href={`${ROUTES.tours}/${tour.slug}`}>
       <div className="card hover:shadow-xl transition-all duration-300 overflow-hidden group cursor-pointer h-full flex flex-col">
-        {/* Image Container */}
-        <div className="h-48 bg-gradient-to-br from-biahes-bright-blue to-biahes-royal-blue rounded-lg mb-4 flex items-center justify-center text-white text-5xl overflow-hidden relative">
-          <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors" />
-          🌍
+        {/* Tour Photo */}
+        <div className="h-48 rounded-lg mb-4 overflow-hidden relative" style={{ position: 'relative', height: 192, borderRadius: 8, overflow: 'hidden' }}>
+          <Image
+            src={tour.hero_image_url}
+            alt={`${tour.title}, ${tour.destination}`}
+            fill
+            sizes="(max-width: 768px) 100vw, 400px"
+            className="group-hover:scale-105 transition-transform duration-300"
+            style={{ objectFit: 'cover' }}
+          />
         </div>
 
         {/* Duration Badge */}
