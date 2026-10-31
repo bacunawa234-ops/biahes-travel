@@ -28,10 +28,10 @@ export default function Header() {
           <Link href={ROUTES.tours} className="text-biahes-navy hover:text-biahes-orange font-semibold transition-colors">
             Tours
           </Link>
-          <Link href="#about" className="text-biahes-navy hover:text-biahes-orange font-semibold transition-colors">
-            About
+          <Link href="/#services" className="text-biahes-navy hover:text-biahes-orange font-semibold transition-colors">
+            Services
           </Link>
-          <Link href="#contact" className="text-biahes-navy hover:text-biahes-orange font-semibold transition-colors">
+          <Link href="/#contact" className="text-biahes-navy hover:text-biahes-orange font-semibold transition-colors">
             Contact
           </Link>
         </div>
