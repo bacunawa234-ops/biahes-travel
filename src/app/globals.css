@@ -1,0 +1,240 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Kaushan+Script&family=Roboto+Condensed:ital@0;1&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: white;
+  color: #141C69;
+  font-family: 'Montserrat', sans-serif;
+  line-height: 1.6;
+}
+
+/* Biahes Brand Colors */
+:root {
+  --color-bright-blue: #277DE5;
+  --color-royal-blue: #255BBB;
+  --color-navy: #141C69;
+  --color-red: #C12C3E;
+  --color-deep-red: #A2153D;
+  --color-orange: #EA5537;
+  --color-gold: #FFB347;
+}
+
+/* Gradient Backgrounds */
+.gradient-navy-blue {
+  background: linear-gradient(to right, #141C69, #255BBB);
+}
+
+.gradient-red-orange {
+  background: linear-gradient(to right, #C12C3E, #EA5537);
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+  color: #141C69;
+}
+
+h1 {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
+h2 {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+@media (min-width: 768px) {
+  h1 {
+    font-size: 3rem;
+    line-height: 3.5rem;
+  }
+  h2 {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+  h3 {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+}
+
+.script-font {
+  font-family: 'Kaushan Script', cursive;
+  color: #C12C3E;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.2s;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary {
+  background-color: #EA5537;
+  color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary:hover {
+  background-color: #C12C3E;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+}
+
+.btn-secondary {
+  background-color: #255BBB;
+  color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-secondary:hover {
+  background-color: #141C69;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+}
+
+.btn-outline {
+  border: 2px solid #EA5537;
+  color: #EA5537;
+  background-color: transparent;
+}
+
+.btn-outline:hover {
+  background-color: #EA5537;
+  color: white;
+}
+
+/* Cards */
+.card {
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  transition: box-shadow 0.2s;
+}
+
+.card:hover {
+  box-shadow: 0 20px 25px rgba(0, 0, 0, 0.1);
+}
+
+.card-price {
+  background: linear-gradient(to right, #C12C3E, #EA5537);
+  color: white;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  font-size: 1.125rem;
+}
+
+/* Price Badge */
+.price-badge {
+  background: linear-gradient(to right, #C12C3E, #EA5537);
+  color: white;
+  border-radius: 9999px;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  font-size: 1.25rem;
+  border: 2px solid white;
+}
+
+/* Logo Container */
+.logo-card {
+  background-color: white;
+  border-radius: 1rem;
+  padding: 1rem;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Input Fields */
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 0.5rem;
+  transition: border-color 0.2s;
+  font-family: inherit;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: #255BBB;
+}
+
+/* Links */
+a {
+  color: #255BBB;
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: #EA5537;
+}
+
+/* Chip/Badge */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.chip-blue {
+  background-color: #255BBB;
+  color: white;
+}
+
+.chip-orange {
+  background-color: #EA5537;
+  color: white;
+}
+
+.chip-navy {
+  background-color: #141C69;
+  color: white;
+}
+
+.chip-red {
+  background-color: #C12C3E;
+  color: white;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
