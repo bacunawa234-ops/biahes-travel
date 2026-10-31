@@ -7,11 +7,11 @@ import { BRAND } from "@/lib/constants";
 export const metadata: Metadata = {
   metadataBase: new URL("https://biahes.com"),
   title: `${BRAND.name} - ${BRAND.tagline}`,
-  description: "Discover amazing travel packages with Biahes Travel & Tours. Book unforgettable tours across Asia with expert guides and best prices.",
+  description: "Discover amazing destinations across the Philippines and beyond with Biahes. Book tours, flights and hotels in one place.",
   keywords: ["travel", "tours", "packages", "vacation", "Philippines", "Asia", "tour operator", "travel agency", "booking"],
-  authors: [{ name: "Biahes Travel & Tours" }],
-  creator: "Biahes Travel & Tours",
-  publisher: "Biahes Travel & Tours",
+  authors: [{ name: "Biahes" }],
+  creator: "Biahes",
+  publisher: "Biahes",
   formatDetection: {
     email: false,
     telephone: true,
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: `${BRAND.name} - ${BRAND.tagline}`,
-    description: "Discover amazing travel packages with Biahes Travel & Tours. Book unforgettable tours across Asia.",
+    description: "Discover amazing destinations across the Philippines and beyond with Biahes.",
     url: "https://biahes.com",
     siteName: BRAND.name,
     type: "website",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
         url: "/images/logos/biahes-logo.png",
         width: 1200,
         height: 630,
-        alt: "Biahes Travel & Tours Logo",
+        alt: "Biahes logo",
       },
     ],
     locale: "en_PH",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: `${BRAND.name} - ${BRAND.tagline}`,
-    description: "Discover amazing travel packages with Biahes Travel & Tours.",
+    description: "Discover amazing destinations across the Philippines and beyond.",
     images: ["/images/logos/biahes-logo.png"],
     creator: "@biahes",
   },
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className="h-full scroll-smooth">
-      <body className="min-h-full flex flex-col bg-white text-biahes-navy antialiased">
+      <body className="bh-body min-h-full flex flex-col antialiased">
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

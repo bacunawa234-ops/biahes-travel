@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Illustration of Kawasan Falls, Cebu"><defs><linearGradient id="p8" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#45DCCB"></stop><stop offset="1" stop-color="#0FA3A0"></stop></linearGradient></defs><rect width="400" height="250" fill="#A8DDF0"></rect><path d="M0 0 H150 V60 Q130 120 140 200 H0Z" fill="#2E7D32"></path><path d="M250 0 H400 V200 H262 Q272 140 250 60Z" fill="#2E7D32"></path>
+     <path d="M140 38 H262 V54 H140Z" fill="#3F7A4A"></path><path d="M160 52 H242 L250 176 H150Z" fill="#E8FBFF"></path>
+     <g stroke="#BDEFF5" stroke-width="3"><path d="M172 56 V172"></path><path d="M190 56 V174"></path><path d="M208 56 V174"></path><path d="M226 56 V172"></path></g>
+     <g fill="#1F5E3A"><circle cx="20" cy="40" r="26"></circle><circle cx="70" cy="20" r="30"></circle><circle cx="120" cy="60" r="22"></circle><circle cx="40" cy="120" r="30"></circle><circle cx="110" cy="150" r="24"></circle><circle cx="290" cy="30" r="28"></circle><circle cx="350" cy="70" r="30"></circle><circle cx="280" cy="120" r="22"></circle><circle cx="380" cy="150" r="26"></circle></g>
+     <g fill="#4CAF50" opacity=".7"><circle cx="60" cy="80" r="18"></circle><circle cx="330" cy="110" r="18"></circle><circle cx="140" cy="20" r="16"></circle></g>
+     <ellipse cx="200" cy="215" rx="220" ry="52" fill="url(#p8)"></ellipse><ellipse cx="200" cy="180" rx="70" ry="14" fill="#fff" opacity=".65"></ellipse>
+     <g stroke="#fff" opacity=".5" stroke-width="1.5"><path d="M90 220 h40"></path><path d="M250 232 h50"></path></g>
+     <g transform="translate(240 206)"><rect width="56" height="7" rx="2" fill="#B07A3E"></rect><path d="M8 0 V7 M20 0 V7 M32 0 V7 M44 0 V7" stroke="#7A5226"></path></g></svg>

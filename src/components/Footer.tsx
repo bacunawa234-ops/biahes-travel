@@ -1,100 +1,65 @@
-'use client';
-
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
-import { BRAND, ROUTES } from '@/lib/constants';
+import { BRAND, CONTACT, ROUTES } from '@/lib/constants';
+
+const year = new Date().getFullYear();
 
 export default function Footer() {
-  const [currentYear, setCurrentYear] = useState(2026);
-
-  useEffect(() => {
-    setCurrentYear(new Date().getFullYear());
-  }, []);
-
   return (
-    <footer className="gradient-navy-blue text-white mt-16">
-      <div className="max-w-7xl mx-auto px-4 py-12">
-        {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-          {/* Brand */}
-          <div>
-            <div className="logo-card w-16 h-16 mb-4">
-              <Image
-                src="/images/logos/biahes-logo-white-bg.png"
-                alt="Biahes Logo"
-                width={64}
-                height={64}
-                className="w-full h-full object-contain"
-              />
-            </div>
-            <h3 className="text-lg font-bold mb-2">{BRAND.name}</h3>
-            <p className="text-sm text-gray-200">{BRAND.tagline}</p>
+    <footer className="bh-footer">
+      <div className="bh-container">
+        <div className="bh-footer-grid">
+          <div className="bh-footer-brand">
+            <Link href={ROUTES.home} className="bh-brand" aria-label={`${BRAND.name} home`}>
+              <span className="bh-brand-mark">
+                <Image src="/images/logos/biahes-logo.png" alt="" width={40} height={44} />
+              </span>
+              <span className="bh-brand-name">{BRAND.name}</span>
+            </Link>
+            <p className="bh-footer-tagline">{BRAND.tagline}</p>
+            <p className="bh-footer-text">
+              Tours, flights and hotels across the Philippines and beyond, planned by people who love to travel.
+            </p>
+            <a href={BRAND.facebook} target="_blank" rel="noopener noreferrer" className="bh-social" aria-label="Biahes on Facebook">
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                <path fill="currentColor" d="M14 8h3V4h-3c-2.8 0-5 2.2-5 5v2H7v4h2v9h4v-9h3l1-4h-4V9c0-.6.4-1 1-1z" />
+              </svg>
+            </a>
           </div>
 
-          {/* Quick Links */}
           <div>
-            <h4 className="font-bold mb-4">Quick Links</h4>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <Link href={ROUTES.home} className="hover:text-biahes-gold transition-colors">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link href={ROUTES.tours} className="hover:text-biahes-gold transition-colors">
-                  Tours
-                </Link>
-              </li>
-              <li>
-                <Link href={ROUTES.admin} className="hover:text-biahes-gold transition-colors">
-                  Admin
-                </Link>
-              </li>
+            <h4 className="bh-footer-head">Explore</h4>
+            <ul className="bh-footer-list">
+              <li><Link href="/#destinations">Destinations</Link></li>
+              <li><Link href={ROUTES.tours}>Tour Packages</Link></li>
+              <li><Link href="/#flights">Flights</Link></li>
+              <li><Link href="/#hotels">Hotels</Link></li>
+              <li><Link href="/#blog">Travel Blog</Link></li>
             </ul>
           </div>
 
-          {/* Contact Info */}
           <div>
-            <h4 className="font-bold mb-4">Contact Us</h4>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <a href={`tel:${BRAND.phone}`} className="hover:text-biahes-gold transition-colors">
-                  📞 {BRAND.phone}
-                </a>
-              </li>
-              <li>
-                <a href={`mailto:${BRAND.email}`} className="hover:text-biahes-gold transition-colors">
-                  📧 {BRAND.email}
-                </a>
-              </li>
-              <li>
-                <a href={BRAND.facebook} target="_blank" rel="noopener noreferrer" className="hover:text-biahes-gold transition-colors">
-                  📱 Biahes on Facebook
-                </a>
-              </li>
+            <h4 className="bh-footer-head">{BRAND.name}</h4>
+            <ul className="bh-footer-list">
+              <li><Link href="/#about">About</Link></li>
+              <li><Link href="/#contact">Contact</Link></li>
+              <li><Link href={ROUTES.booking}>Book Now</Link></li>
             </ul>
           </div>
 
-          {/* Hours */}
           <div>
-            <h4 className="font-bold mb-4">Hours</h4>
-            <ul className="space-y-2 text-sm">
-              <li>Monday - Friday: 9AM - 6PM</li>
-              <li>Saturday: 10AM - 4PM</li>
-              <li>Sunday: Closed</li>
-              <li className="pt-2 text-biahes-gold font-semibold">All times are PH (UTC+8)</li>
+            <h4 className="bh-footer-head">Contact</h4>
+            <ul className="bh-footer-list">
+              <li><a href={`tel:${CONTACT.phone.replace(/\s/g, '')}`}>{CONTACT.phone}</a></li>
+              <li><a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a></li>
+              <li className="bh-footer-muted">{CONTACT.businessHours}</li>
             </ul>
           </div>
         </div>
 
-        {/* Divider */}
-        <hr className="border-gray-400 my-8" />
-
-        {/* Bottom Footer */}
-        <div className="flex flex-col md:flex-row items-center justify-between text-sm text-gray-200">
-          <p>&copy; {currentYear} {BRAND.name}. All rights reserved.</p>
-          <p>Made with ❤️ for your travel dreams</p>
+        <div className="bh-footer-bottom">
+          <p>&copy; {year} {BRAND.name}. All rights reserved.</p>
+          <p>Prices in PHP, per person, subject to availability.</p>
         </div>
       </div>
     </footer>

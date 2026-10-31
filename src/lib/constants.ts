@@ -1,11 +1,12 @@
 // Biahes Brand Colors & Constants
 export const BRAND = {
   name: 'Biahes',
-  tagline: 'Your next trip starts here!',
+  tagline: 'Your Next Adventure Starts Here',
   phone: '0956 382 3906',
   email: 'bacunawatravels@gmail.com',
   facebook: 'https://facebook.com/Biahes',
   colors: {
+    primary: '#0B1F3A',
     brightBlue: '#277DE5',
     royalBlue: '#255BBB',
     navy: '#141C69',
@@ -38,6 +39,7 @@ export const ROUTES = {
 };
 
 export const TAILWIND_COLORS = {
+  'biahes-primary': '#0B1F3A',
   'biahes-bright-blue': '#277DE5',
   'biahes-royal-blue': '#255BBB',
   'biahes-navy': '#141C69',

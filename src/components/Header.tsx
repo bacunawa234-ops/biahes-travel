@@ -1,49 +1,82 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
 import { BRAND, ROUTES } from '@/lib/constants';
+import { NAV_LINKS } from '@/lib/home-data';
 
 export default function Header() {
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = open ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [open]);
+
   return (
-    <header className="bg-white shadow-md sticky top-0 z-50">
-      <nav className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-        {/* Logo */}
-        <Link href={ROUTES.home} className="flex items-center gap-3">
-          <div className="logo-card w-12 h-12">
-            <Image
-              src="/images/logos/biahes-logo.png"
-              alt="Biahes Logo"
-              width={48}
-              height={48}
-              className="w-full h-full object-contain"
-            />
-          </div>
-          <div>
-            <h1 className="text-xl font-bold text-biahes-navy m-0">{BRAND.name}</h1>
-            <p className="text-xs text-biahes-orange m-0">{BRAND.tagline}</p>
-          </div>
+    <header className={`bh-header${scrolled ? ' is-scrolled' : ''}`}>
+      <nav className="bh-container bh-nav" aria-label="Main">
+        <Link href={ROUTES.home} className="bh-brand" aria-label={`${BRAND.name} home`} onClick={() => setOpen(false)}>
+          <span className="bh-brand-mark">
+            <Image src="/images/logos/biahes-logo.png" alt="" width={40} height={44} priority />
+          </span>
+          <span className="bh-brand-name">{BRAND.name}</span>
         </Link>
 
-        {/* Navigation */}
-        <div className="hidden md:flex items-center gap-8">
-          <Link href={ROUTES.tours} className="text-biahes-navy hover:text-biahes-orange font-semibold transition-colors">
-            Tours
+        <ul className="bh-nav-links">
+          {NAV_LINKS.map((l) => (
+            <li key={l.label}>
+              <Link href={l.href}>{l.label}</Link>
+            </li>
+          ))}
+        </ul>
+
+        <div className="bh-nav-actions">
+          <Link href={ROUTES.booking} className="bh-btn bh-btn-gold bh-btn-sm bh-hide-mobile">
+            Book Now
           </Link>
-          <Link href="#about" className="text-biahes-navy hover:text-biahes-orange font-semibold transition-colors">
-            About
-          </Link>
-          <Link href="#contact" className="text-biahes-navy hover:text-biahes-orange font-semibold transition-colors">
-            Contact
-          </Link>
+          <button
+            type="button"
+            className="bh-menu-btn"
+            aria-expanded={open}
+            aria-controls="bh-mobile-menu"
+            aria-label={open ? 'Close menu' : 'Open menu'}
+            onClick={() => setOpen((v) => !v)}
+          >
+            <span className={`bh-burger${open ? ' is-open' : ''}`} aria-hidden="true">
+              <span />
+              <span />
+              <span />
+            </span>
+          </button>
         </div>
-
-        {/* CTA Button */}
-        <Link href={ROUTES.tours} className="btn-primary hidden md:flex">
-          Browse Tours
-        </Link>
-
-        {/* Mobile Menu Button */}
-        <button className="md:hidden text-biahes-navy text-2xl">☰</button>
       </nav>
+
+      <div id="bh-mobile-menu" className={`bh-mobile-menu${open ? ' is-open' : ''}`} hidden={!open}>
+        <ul>
+          {NAV_LINKS.map((l) => (
+            <li key={l.label}>
+              <Link href={l.href} onClick={() => setOpen(false)}>
+                {l.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <Link href={ROUTES.booking} className="bh-btn bh-btn-gold bh-btn-block" onClick={() => setOpen(false)}>
+          Book Now
+        </Link>
+      </div>
     </header>
   );
 }
